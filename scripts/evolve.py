@@ -15,7 +15,7 @@ from libsequence.summstats import PolySIM
 
 #My stuff
 import clonal  #This is my fwdpy11 extension module for clonal evolution
-#import RecordStats # My recorder class
+import RecordStats # My recorder class
 
 def main(rep):
     #Basic values
