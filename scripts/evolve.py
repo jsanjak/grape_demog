@@ -33,7 +33,7 @@ def main(rep):
     rho=40
     #rep=1
     #Initialize recorder -- every 100 generations at first
-    recorder_anc = RecordStats(100,rng0)
+    recorder_anc = RecordStats.RecordStats(100,rng0)
 
     #Parameter dictionarys
     # Ancestral burnin
@@ -69,19 +69,21 @@ def main(rep):
     print("Burnin")
 
     fp11.wright_fisher.evolve(rng0,pop_anc,params_anc,recorder_anc)
+    
+    recorder_const_outcross = RecordStats.RecordStats(10,rng0)    
 
     pop_bottle_outcross = deepcopy(pop_anc) # bottle neck + outcrossing
-    recorder_bottle_outcross = RecordStats(10,rng1) #copy(recorder_anc)
+    recorder_bottle_outcross = RecordStats.RecordStats(10,rng1) #copy(recorder_anc)
 
     pop_const_clonal = deepcopy(pop_anc) # constant pop size + clonal propagation
-    recorder_const_clonal = RecordStats(10,rng2)
+    recorder_const_clonal = RecordStats.RecordStats(10,rng2)
 
     pop_bottle_clonal = deepcopy(pop_anc) # bottle neck + clonal
-    recorder_bottle_clonal = RecordStats(10,rng3)
+    recorder_bottle_clonal = RecordStats.RecordStats(10,rng3)
 
     print("Finishing")
     fp11.wright_fisher.evolve(rng0,pop_anc,
-                              params_const,recorder_anc) # constant pop  + outcrossing
+                              params_const,recorder_const_outcross) # constant pop  + outcrossing
 
     fp11.wright_fisher.evolve(rng1,pop_bottle_outcross,
                               params_bottle,recorder_bottle_outcross) # bottleneck  + outcrossing
@@ -92,7 +94,8 @@ def main(rep):
     clonal.evolve(rng3,pop_bottle_clonal,
                   params_bottle,recorder_bottle_clonal)# constant pop  + clonal
     print("Writing")
-    recorder_dict = {"const_outcross" : recorder_anc,
+    recorder_dict = {"ancestral" : recorder_anc,
+                    "const_outcross" : recorder_const_outcross,
                     "bottle_outcross" : recorder_bottle_outcross,
                     "const_clonal" : recorder_const_clonal,
                     "bottle_clonal" : recorder_bottle_clonal}

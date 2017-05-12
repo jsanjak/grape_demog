@@ -7,6 +7,10 @@ import fwdpy11.sampling as fps
 import libsequence.polytable as polyt
 from libsequence.summstats import PolySIM
 
+def str2byte(tup,fmtstring):
+    byte_tup = (tup[0],bytearray(tup[1],fmtstring))
+    return(byte_tup)
+
 class RecordStats:
     """
     Record some basic stats about the population
