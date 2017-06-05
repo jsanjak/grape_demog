@@ -18,7 +18,7 @@ In the main repo directory, you can run python3 setup.py install --user
 
 ## Evolve script
 
-In 'project/' you will see scripts names evolve_*.py. These are set up to run simulations in parallel and dump results to 'data/*'
+In 'project/' you will see scripts names evolve_*.py. These are set up to run simulations in parallel and dump results to 'project/data/*'
 
 ### Recorder class
 
