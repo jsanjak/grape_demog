@@ -14,15 +14,15 @@ clonal is a [pybind11](https://pybind11.readthedocs.io/en/stable/) extension mod
 
 ### Install
 
-In the main repo directory, I think you can run python3 setup.py install --user
+In the main repo directory, you can run python3 setup.py install --user
 
 ## Evolve script
 
-In 'scripts/' you will see evolve.py. This is set up to run simulations in parallel and dump results to 'data'
+In 'project/' you will see scripts names evolve_*.py. These are set up to run simulations in parallel and dump results to 'data/*'
 
 ### Recorder class
 
-The recroder class in scripts/RecordStats.py is a critical piece to this project. It collect's time series data during the simulations. I am currently collecting the following data
+The recroder class in project/RecordStats.py is a critical piece to this project. It collect's time series data during the simulations. I am currently collecting the following data
 
 * Generation time
 * Population size
@@ -41,4 +41,4 @@ The recroder class in scripts/RecordStats.py is a critical piece to this project
 
 ## Examples
 
-Please see 'scripts/Example' for example jupyter notebooks.
+Please see 'project/Example' for shorter example jupyter notebooks or just take a look at any of the notebooks in the main project directory.
