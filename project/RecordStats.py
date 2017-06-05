@@ -36,7 +36,7 @@ class RecordStats:
         self.total_pi = []
         self.neutral_hprime = []
         self.total_hprime = []
-    
+        self.deleterious_het = [] 
     
     def __call__(self,pop):
         """
@@ -59,6 +59,11 @@ class RecordStats:
             mean_deleterious_per_diploid = np.mean([len(pop.gametes[ind.first].smutations) + 
                                        len(pop.gametes[ind.second].smutations) for 
                                        ind in pop.diploids ])
+            mean_deleterious_het = np.mean([len(set(
+                                    pop.gametes[ind.first].smutations).symmetric_difference(
+                                    pop.gametes[ind.second].smutations)) for
+                                    ind in pop.diploids ])
+
             mean_neutral_per_diploid = np.mean([len(pop.gametes[ind.first].mutations) + 
                                        len(pop.gametes[ind.second].mutations) for 
                                        ind in pop.diploids])  
@@ -102,4 +107,5 @@ class RecordStats:
             self.total_pi.append(total_pi)
             self.neutral_hprime.append(neutral_hprime)
             self.total_hprime.append(total_hprime)
+            self.deleterious_het.append(mean_deleterious_het)
             

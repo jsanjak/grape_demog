@@ -29,8 +29,8 @@ def main(rep):
     N_pre=200 # Present size
     Gen_burnin = 8*N_anc # Burnin generations
     Gen_bottle = 100 #Bottle neck generations
-    theta=200
-    rho=40
+    theta=40
+    rho=8
     #rep=1
     #Initialize recorder -- every 100 generations at first
     recorder_anc = RecordStats.RecordStats(100,rng0)
@@ -70,16 +70,16 @@ def main(rep):
 
     fp11.wright_fisher.evolve(rng0,pop_anc,params_anc,recorder_anc)
     
-    recorder_const_outcross = RecordStats.RecordStats(10,rng0)    
+    recorder_const_outcross = RecordStats.RecordStats(1,rng0)    
 
     pop_bottle_outcross = deepcopy(pop_anc) # bottle neck + outcrossing
-    recorder_bottle_outcross = RecordStats.RecordStats(10,rng1) #copy(recorder_anc)
+    recorder_bottle_outcross = RecordStats.RecordStats(1,rng1) #copy(recorder_anc)
 
     pop_const_clonal = deepcopy(pop_anc) # constant pop size + clonal propagation
-    recorder_const_clonal = RecordStats.RecordStats(10,rng2)
+    recorder_const_clonal = RecordStats.RecordStats(1,rng2)
 
     pop_bottle_clonal = deepcopy(pop_anc) # bottle neck + clonal
-    recorder_bottle_clonal = RecordStats.RecordStats(10,rng3)
+    recorder_bottle_clonal = RecordStats.RecordStats(1,rng3)
 
     print("Finishing")
     fp11.wright_fisher.evolve(rng0,pop_anc,
@@ -100,12 +100,12 @@ def main(rep):
                     "const_clonal" : recorder_const_clonal,
                     "bottle_clonal" : recorder_bottle_clonal}
     
-    output = open('data/clonal_grape.'+str(rep)+'.pkl', 'wb')
+    output = open('data/additive/additive_clonal_grape.'+str(rep)+'.pkl', 'wb')
     pickle.dump(recorder_dict,output)
     output.close()
 if __name__ == "__main__":
     #main()
-    repid = [i for i in range(30)]
+    repid = [i for i in range(500)]
     P=mp.Pool()
     res=P.imap_unordered(main,repid)
     P.close()
