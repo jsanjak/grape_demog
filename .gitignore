@@ -8,4 +8,4 @@
 /*.egg-info
 
 #ignore pickled data
-*pkl
+/project/data/*pkl
