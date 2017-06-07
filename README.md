@@ -1,6 +1,6 @@
 # Simulating and analyzing a theoretical wine grape demography
 
-This project is setup to perform large scale population genetic simulations and perform time-series analysis of the data.
+This project is setup to perform large scale population genetic simulations and perform time-series analysis of the data. A detailed description of the motivation and use of these simulations can be found in [Zhou et al. 2017](http://biorxiv.org/content/early/2017/06/05/146373).
 
 ## Clonal package
 clonal is a [pybind11](https://pybind11.readthedocs.io/en/stable/) extension module for [fwdpy11](https://github.com/molpopgen/fwdpy11)
