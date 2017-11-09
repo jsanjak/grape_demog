@@ -24,6 +24,7 @@ class RecordStats:
         self.relative_load = []
         self.segregating_load = []
         self.fixed_load = []
+        self.total_load = []
         self.fixed_deleterious = []
         self.fixed_neutral = []
         self.mean_deleterious_per_diploid = []
@@ -72,7 +73,9 @@ class RecordStats:
             fixed_neutral = [mut.neutral for mut in pop.fixations].count(True)
             relative_load = 1 - np.mean(w)/np.max(w)
             segregating_load = 1 - np.mean(w)
-            fixed_load = 1 - np.prod([1+2*s for s in fixed_s])
+            fixed_w = np.prod([1+2*s for s in fixed_s])
+            fixed_load = 1 - fixed_w
+            total_load = 1 - np.mean([fixed_w*ind.w for ind in pop.diploids])
 
             #Statistics on population samples:
             samp = fps.sample_separate(self.rng,pop,100,False)
@@ -95,6 +98,7 @@ class RecordStats:
             self.relative_load.append(relative_load)
             self.segregating_load.append(segregating_load)
             self.fixed_load.append(fixed_load)
+            self.total_load.append(total_load)
             self.fixed_deleterious.append(fixed_deleterious)
             self.fixed_neutral.append(fixed_neutral)
             self.mean_deleterious_per_diploid.append(mean_deleterious_per_diploid)
